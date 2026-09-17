@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A simple RPG adventure generator.">
+        <title>Random Adventure Generator</title>
+        <style>
+            @media (max-width: 600px)
+            {
+                .app
+                {
+                    padding: 2rem 0;
+                }
+
+                .card
+                {
+                    padding: 1.25rem;
+                }
+
+                .hero h1
+                {
+                    font-size: 2.7rem;
+                }
+            }
+            :root 
+            {
+                --ink: #20252c;
+                --muted: #68717b;
+                --paper: #f5f1e9;
+                --surface: #fffdf8;
+                --line: #ded8cb;
+                --accent: #b74e35;
+                --accent-dark: #873723;
+                --gold: #b98b3f;
+                --green: #47745b;
+                --shadow: 0 20px 60px rgba(46, 38, 26, 0.12);
+            }
+
+            * {box-sizing: border-box;}
+            .app
+            {
+                width: min(900px, calc(100% - 2rem));
+                margin: 0 auto;
+                padding: 4rem 0;
+                position: relative;
+            }
+
+            body 
+            {
+                margin: 0;
+                color: var(--ink);
+                background: var(--paper);
+                font-family: Georgia, "Times New Roman", serif;
+                min-height: 100vh;
+            }
+
+            body::before 
+            {
+                content: "";
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                opacity: 0.3;
+                background-image: radial-gradient(#c9bca8 0.7px, transparent 0.7px);
+                background-size: 17px 17px;
+                mask-image: linear-gradient(to bottom, black, transparent 78%);
+
+            }
+
+            button
+            {
+                background: var(--accent);
+                border: 0;
+                border-radius: 999px;
+                color: white;
+                cursor: pointer;
+                font: inherit;
+                font-weight: bold;
+                margin-top: 1rem;
+                padding: 0.8rem 1.3rem;
+            }
+
+            button:focus-visible
+            {
+                outline: 3px solid var(--gold);
+                outline-offset: 4px;
+
+            }
+
+            button:hover
+            {
+                background: var(--accent-dark);
+            }
+
+            .card
+            {
+                background: var(--surface);
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                box-shadow: var(--shadow);
+                padding: 2rem;
+                min-height: 220px;
+                color: var(--accent-dark);
+                font-size: clamp(1rem, 1vw, 3.2rem);
+                margin: 0.4rem 0 1rem;
+            }
+
+            .card p
+            {
+                line-height: 1.0;
+            }
+
+            .card strong
+            {
+                color: var(--green);
+            }
+
+            .eyebrow
+            {
+                color: var(--accent);
+                font-size: 0.75rem;
+                font-weight: bold;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+            }
+
+            .hero
+            {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .hero h1
+            {
+                font-size: clamp(2.5rem, 7vw, 5rem);
+                margin: 0.5rem 0 1rem;
+            }
+
+            .hero p
+            {
+                color: var(--muted);
+                font-size: 1.1rem;
+            }
+
+            .history-section
+            {
+                margin-top: 3rem;
+            }
+
+            .history-section h2
+            {
+                border-bottom: 1px solid var(--line);
+                color: var(--accent-dark);
+                padding-bottom: 0.7rem;
+            }
+
+            #history-list
+            {
+                display: grid;
+                gap: 0.75rem;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            #history-list li
+            {
+                background: rgba(255, 253, 248, 0.72);
+                border-left: 4px solid var(--gold);
+                border-radius: 8px;
+                padding: 0.9rem 1rem;
+            }
+
+            .placeholder
+            {
+                color: var(--muted);
+                text-align: center;
+            }
+
+            
+        </style>
+    </head>
+    <body>
+        <main class="app">
+        <header class="hero">
+            <p class="eyebrow">RANDOM ADVENTURE GENERATOR</p>
+            <h1>What awaits beyond the map?</h1>
+            <p>
+                Generate a unique fantasy encounter using local data and a remote API.
+            </p>
+            <button id="generate-button">Generate Adventure</button>
+        </header>
+
+        <section id="adventure-card" class="card">
+            <p class="placeholder">
+                Your generated adventure will appear here.
+            </p>
+        </section>
+
+        <section class="history-section">
+            <h2>Previous Adventures</h2>
+            <ul id="history-list"></ul>
+        </section>
+        </main>
+
+    <script src="script.js"></script>
+    </body>
+</html>
